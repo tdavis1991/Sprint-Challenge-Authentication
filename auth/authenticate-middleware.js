@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-function authentication() {
+function authentication(role = 'normal') {
   return async (req, res, next) => {
     try {
       console.log('req.cookie', req.cookies)

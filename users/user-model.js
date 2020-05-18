@@ -13,10 +13,17 @@ function findBy(user) {
     return db("users").where(user).select('id', 'username', 'password')
 }
 
-function add(user) {
+async function add(user) {
     user.password = await bcrpyt.hash(user.password, 14)
 
     const [id] = await db("users").insert(user)
 
     return findById(id)
+}
+
+module.exports = {
+    find,
+    findBy,
+    findById,
+    add
 }
