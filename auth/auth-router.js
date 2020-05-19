@@ -6,6 +6,15 @@ const auththentication = require('./authenticate-middleware')
 
 const router = express.Router()
 
+router.get('/users', async(req, res, next) => {
+  try {
+    const users = await Users.find()
+    res.status(200).json(users)
+  }catch(err) {
+    next(err)
+  }
+})
+
 router.post('/register', async (req, res, next) => {
   try {
     const { username } = req.body
@@ -46,8 +55,8 @@ router.post('/login', async(req, res, next) => {
     }
 
     res.cookie('token', jwt.sign(tokenPayload, process.env.JWT_SECRET))
-    console.log(user)
-    res.json({
+    console.log(user.password)
+    res.status(200).json({
       message: `${user.username}, has successfully logged in!`
     })
   }catch(err) {
