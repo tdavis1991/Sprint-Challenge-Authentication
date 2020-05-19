@@ -1,0 +1,7 @@
+1) Sessions are used to store individual data of users using session ids.
+
+2) Bcrypt helps secure a password through hashing
+
+3) Using a key derivation function
+
+4) Header, payload, signature
